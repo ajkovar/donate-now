@@ -3,6 +3,7 @@ import styled from "styled-components";
 import MakeDonation from "./MakeDonation";
 import Bubble from "./generic/Bubble";
 import colors from "colors";
+import Confetti from "react-confetti";
 
 const Wrapper = styled.section`
   position: absolute;
@@ -26,12 +27,20 @@ const moneyFormatter = new Intl.NumberFormat("en-IN", {
 });
 
 export default function () {
-  const [donors, setDonors] = useState(11);
   const donationGoal = 2000;
+  const [donors, setDonors] = useState(11);
   const [moneyCollected, setMoneyCollected] = useState(250);
+  const [showConfetti, setShowConfetti] = useState(false);
   const moneyNeeded = Math.max(donationGoal - moneyCollected, 0);
   return (
     <Wrapper>
+      {showConfetti && (
+        <Confetti
+          recycle={false}
+          gravity={0.2}
+          onConfettiComplete={() => setShowConfetti(false)}
+        />
+      )}
       <DonationWrapper>
         <Bubble>
           <strong>
@@ -46,6 +55,7 @@ export default function () {
           onDonate={(amount) => {
             setDonors(donors + 1);
             setMoneyCollected(moneyCollected + amount);
+            setShowConfetti(true);
           }}
         />
       </DonationWrapper>
