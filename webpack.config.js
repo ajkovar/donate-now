@@ -1,36 +1,38 @@
+var path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-    entry: './src/index.tsx',
-    resolve: {
-        extensions: [".ts", ".tsx", ".js", ".jsx"]
-    },
-	module: {
-		rules: [
-			{
-                test: /\.ts(x?)$/,
-                exclude: /node_modules/,
-                use: [
-                    {
-                        loader: "ts-loader"
-                    }
-                ]
-            },
-			{
-				test: /\.html$/,
-				use: [
-					{
-						loader: "html-loader",
-					},
-				],
-			},
-		],
-	},
-	plugins: [
-		new HtmlWebPackPlugin({
-			template: "./src/index.html",
-			filename: "./index.html",
-			favicon: "./src/favicon.ico"
-		}),
-	],
+  entry: "./src/index.tsx",
+  resolve: {
+    modules: [path.resolve(__dirname, "./src"), "node_modules"],
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.ts(x?)$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "ts-loader",
+          },
+        ],
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader",
+          },
+        ],
+      },
+    ],
+  },
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: "./src/index.html",
+      filename: "./index.html",
+      favicon: "./src/favicon.ico",
+    }),
+  ],
 };

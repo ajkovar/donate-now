@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import MakeDonation from "./MakeDonation";
 import Bubble from "./generic/Bubble";
+import colors from "colors";
 
 const Wrapper = styled.section`
   position: absolute;
@@ -9,7 +10,7 @@ const Wrapper = styled.section`
   right: 0;
   bottom: 0;
   left: 0;
-  background: papayawhip;
+  background: ${colors.white};
   display: flex;
   align-items: center;
   justify-content: center;
