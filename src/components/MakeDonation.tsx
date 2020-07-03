@@ -32,10 +32,6 @@ const Strong = styled.strong`
   color: ${colors.black};
 `;
 
-const Error = styled.strong`
-  color: ${colors.strawberry120};
-`;
-
 const InputWrapper = styled.div`
   display: flex;
   font-size: 24px;
@@ -46,6 +42,14 @@ const InputWrapper = styled.div`
   button {
     border-radius: 0 6px 6px 0;
   }
+`;
+
+const Error = styled.strong`
+  color: ${colors.strawberry120};
+`;
+
+const Success = styled.strong`
+  color: ${colors.mint};
 `;
 
 type Props = {
@@ -67,6 +71,7 @@ export default function ({
   moneyCollected,
 }: Props) {
   const [amount, setAmount] = useState(defaultValue);
+  const [donationMade, setDonationMade] = useState(false);
   const [error, setError] = useState(null);
 
   return (
@@ -84,17 +89,22 @@ export default function ({
             const amount = parseInt(value, 10);
             setAmount(amount);
             setError(validate(amount));
+            setDonationMade(false);
           }}
         />
         <Button
           type="button"
-          onClick={() => onDonate(amount)}
+          onClick={() => {
+            onDonate(amount);
+            setDonationMade(true);
+          }}
           disabled={!!error}
         >
           Give Now
         </Button>
       </InputWrapper>
       {error && <Error>{error}</Error>}
+      {donationMade && <Success>Thank you!</Success>}
     </Wrapper>
   );
 }
