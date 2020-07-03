@@ -6,10 +6,11 @@ export default styled.button`
   border-radius: 6px;
   height: 50px;
   cursor: pointer;
-  padding: 0 12px;
+  padding: 0 16px;
   border: 0;
-  background-color: ${colors.ocean};
+  background-color: ${colors.mint};
   color: ${colors.white};
+  font-size: 15px;
 
   :hover {
     opacity: 0.9;

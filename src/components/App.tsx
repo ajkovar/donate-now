@@ -10,19 +10,27 @@ const Wrapper = styled.section`
   right: 0;
   bottom: 0;
   left: 0;
-  background: ${colors.white};
+  background: ${colors.slate20};
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: "IBM Plex Sans", sans-serif;
 `;
 
-const DonationWrapper = styled.section``;
+const DonationWrapper = styled.section`
+  margin: 0 15px;
+`;
 
 export default function () {
   return (
     <Wrapper>
       <DonationWrapper>
-        <Bubble>$1,500 still needed to fund the project</Bubble>
+        <Bubble>
+          <strong>
+            <sup>$</sup>1,500
+          </strong>{" "}
+          still needed to fund the project
+        </Bubble>
         <MakeDonation />
       </DonationWrapper>
     </Wrapper>

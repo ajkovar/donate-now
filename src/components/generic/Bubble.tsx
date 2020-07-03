@@ -2,13 +2,13 @@ import React, { FunctionComponent } from "react";
 import styled from "styled-components";
 import colors from "colors";
 
-const height = "10px";
+const height = 10;
 
 const Wrapper = styled.section`
   background-color: ${colors.ocean40};
   position: relative;
-  margin-bottom: ${height};
-  padding: 6px 12px;
+  margin-bottom: ${height + 4}px;
+  padding: 6px 12px 8px 12px;
   border-radius: 8px;
   font-size: 13px;
   color: ${colors.ocean80};
@@ -16,11 +16,11 @@ const Wrapper = styled.section`
   ::after {
     content: " ";
     position: absolute;
-    bottom: -${height};
-    right: 10px;
-    border-left: ${height} solid transparent;
-    border-right: ${height} solid transparent;
-    border-top: ${height} solid ${colors.ocean40};
+    bottom: -${height}px;
+    right: 24px;
+    border-left: ${height}px solid transparent;
+    border-right: ${height}px solid transparent;
+    border-top: ${height}px solid ${colors.ocean40};
   }
 `;
 
