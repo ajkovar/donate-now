@@ -15,7 +15,4 @@ export default styled.input`
   :focus {
     outline: 0;
   }
-  :first-line {
-    display: inline-block;
-  }
 `;

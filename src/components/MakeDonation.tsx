@@ -31,6 +31,10 @@ const Strong = styled.strong`
   color: ${colors.black};
 `;
 
+const Error = styled.strong`
+  color: ${colors.strawberry120};
+`;
+
 const InputWrapper = styled.div`
   display: flex;
   font-size: 24px;
@@ -50,8 +54,13 @@ type Props = {
 
 const defaultValue = 50;
 
+const validate = (amount: number) =>
+  amount < 5 ? "Donation must be greater than $5" : null;
+
 export default function ({ donors, onDonate }: Props) {
   const [amount, setAmount] = useState(defaultValue);
+  const [error, setError] = useState(null);
+
   return (
     <Wrapper>
       <ProgressBar />
@@ -63,12 +72,21 @@ export default function ({ donors, onDonate }: Props) {
       <InputWrapper>
         <MoneyInput
           value={amount}
-          onChange={({ target: { value } }) => setAmount(parseInt(value, 10))}
+          onChange={({ target: { value } }) => {
+            const amount = parseInt(value, 10);
+            setAmount(amount);
+            setError(validate(amount));
+          }}
         />
-        <Button type="button" onClick={() => onDonate(amount)}>
+        <Button
+          type="button"
+          onClick={() => onDonate(amount)}
+          disabled={!!error}
+        >
           Give Now
         </Button>
       </InputWrapper>
+      {error && <Error>{error}</Error>}
     </Wrapper>
   );
 }

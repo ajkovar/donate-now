@@ -10,4 +10,5 @@ export default {
   slate40: "#ced3e0",
   white: "#fff",
   black: "#000",
+  strawberry120: "#e40e49",
 };

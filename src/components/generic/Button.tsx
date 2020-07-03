@@ -23,4 +23,8 @@ export default styled.button`
   :focus {
     outline: 0;
   }
+
+  :disabled {
+    opacity: 0.4;
+  }
 `;
