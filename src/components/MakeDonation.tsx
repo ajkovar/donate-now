@@ -82,7 +82,7 @@ export default function ({
         <MoneyInput
           value={amount}
           onChange={({ target: { value } }) => {
-            const amount = parseInt(value, 10);
+            const amount = Number(parseFloat(value).toFixed(2));
             setAmount(amount);
             setError(validate(amount));
             setDonationMade(false);
