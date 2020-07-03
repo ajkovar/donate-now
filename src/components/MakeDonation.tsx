@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import colors from "colors";
 import MoneyInput from "./generic/MoneyInput";
@@ -43,18 +43,31 @@ const InputWrapper = styled.div`
   }
 `;
 
-export default function () {
+type Props = {
+  donors: number;
+  onDonate: (amount: number) => void;
+};
+
+const defaultValue = 50;
+
+export default function ({ donors, onDonate }: Props) {
+  const [amount, setAmount] = useState(defaultValue);
   return (
     <Wrapper>
       <ProgressBar />
       <Title>Only four days left to fund this project</Title>
       <P>
-        Join the <Strong>11</Strong> other donors who have already supported
-        this project.
+        Join the <Strong>{donors}</Strong> other donors who have already
+        supported this project.
       </P>
       <InputWrapper>
-        <MoneyInput value={50} onChange={console.log} />
-        <Button type="button">Give Now</Button>
+        <MoneyInput
+          value={amount}
+          onChange={({ target: { value } }) => setAmount(parseInt(value, 10))}
+        />
+        <Button type="button" onClick={() => onDonate(amount)}>
+          Give Now
+        </Button>
       </InputWrapper>
     </Wrapper>
   );
