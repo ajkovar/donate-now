@@ -13,6 +13,7 @@ const Wrapper = styled.section`
   position: relative;
   padding-top: 50px;
   max-width: 330px;
+  overflow: hidden;
 `;
 
 const Title = styled.h2`
@@ -49,6 +50,8 @@ const InputWrapper = styled.div`
 
 type Props = {
   donors: number;
+  donationGoal: number;
+  moneyCollected: number;
   onDonate: (amount: number) => void;
 };
 
@@ -57,13 +60,18 @@ const defaultValue = 50;
 const validate = (amount: number) =>
   amount < 5 ? "Donation must be greater than $5" : null;
 
-export default function ({ donors, onDonate }: Props) {
+export default function ({
+  donors,
+  onDonate,
+  donationGoal,
+  moneyCollected,
+}: Props) {
   const [amount, setAmount] = useState(defaultValue);
   const [error, setError] = useState(null);
 
   return (
     <Wrapper>
-      <ProgressBar />
+      <ProgressBar progress={(moneyCollected / donationGoal) * 100} />
       <Title>Only four days left to fund this project</Title>
       <P>
         Join the <Strong>{donors}</Strong> other donors who have already

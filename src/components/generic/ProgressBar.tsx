@@ -17,13 +17,18 @@ const Progress = styled.div`
   position: absolute;
   top: 0px;
   bottom: 0px;
-  width: 24%;
+  width: ${({ progress }: Props) => progress}%;
   background-color: ${colors.mint};
+  transition: 0.5s width;
 `;
 
-const MoneyInput: FunctionComponent = () => (
+type Props = {
+  progress: number;
+};
+
+const MoneyInput: FunctionComponent<Props> = ({ progress }) => (
   <Wrapper>
-    <Progress />
+    <Progress progress={Math.min(progress, 100)} />
   </Wrapper>
 );
 

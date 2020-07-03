@@ -27,7 +27,9 @@ const moneyFormatter = new Intl.NumberFormat("en-IN", {
 
 export default function () {
   const [donors, setDonors] = useState(11);
-  const [moneyNeeded, setMoneyNeeded] = useState(1500);
+  const donationGoal = 2000;
+  const [moneyCollected, setMoneyCollected] = useState(250);
+  const moneyNeeded = Math.max(donationGoal - moneyCollected, 0);
   return (
     <Wrapper>
       <DonationWrapper>
@@ -39,10 +41,11 @@ export default function () {
         </Bubble>
         <MakeDonation
           donors={donors}
+          moneyCollected={moneyCollected}
+          donationGoal={donationGoal}
           onDonate={(amount) => {
-            console.log(amount);
             setDonors(donors + 1);
-            setMoneyNeeded(Math.max(moneyNeeded - amount, 0));
+            setMoneyCollected(moneyCollected + amount);
           }}
         />
       </DonationWrapper>
