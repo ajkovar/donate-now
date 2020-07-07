@@ -3,18 +3,6 @@ import Input from "./Input";
 import styled from "styled-components";
 import colors from "colors";
 
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  position: relative;
-  flex: 1;
-
-  input {
-    padding-left: 32px;
-    flex: 1;
-  }
-`;
-
 const Dollar = styled.div`
   position: absolute;
   left: 16px;
@@ -25,10 +13,20 @@ const Dollar = styled.div`
 const MoneyInput: FunctionComponent<InputHTMLAttributes<HTMLInputElement>> = (
   props
 ) => (
-  <Wrapper>
-    <Dollar>$</Dollar>
+  <div className={props.className}>
     <Input type="number" {...props} />
-  </Wrapper>
+    <Dollar>$</Dollar>
+  </div>
 );
 
-export default MoneyInput;
+export default styled(MoneyInput)`
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex: 1;
+
+  ${Input} {
+    padding-left: 32px;
+    flex: 1;
+  }
+`;

@@ -3,7 +3,7 @@ import colors from "colors";
 
 export default styled.button`
   font-weight: bold;
-  border-radius: 6px;
+  border-radius: 0 6px 6px 0;
   height: 50px;
   cursor: pointer;
   padding: 0 16px;

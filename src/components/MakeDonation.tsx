@@ -5,7 +5,7 @@ import MoneyInput from "./generic/MoneyInput";
 import Button from "./generic/Button";
 import ProgressBar from "./generic/ProgressBar";
 
-const Wrapper = styled.section`
+const Container = styled.section`
   background: ${colors.white};
   border-radius: 6px;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.35);
@@ -38,10 +38,6 @@ const InputWrapper = styled.div`
   font-weight: bold;
   margin: 0 0 4px 0;
   flex: 1;
-
-  button {
-    border-radius: 0 6px 6px 0;
-  }
 `;
 
 const Error = styled.strong`
@@ -75,7 +71,7 @@ export default function ({
   const [error, setError] = useState(null);
 
   return (
-    <Wrapper>
+    <Container>
       <ProgressBar progress={(moneyCollected / donationGoal) * 100} />
       <Title>Only four days left to fund this project</Title>
       <P>
@@ -105,6 +101,6 @@ export default function ({
       </InputWrapper>
       {error && <Error>{error}</Error>}
       {donationMade && <Success>Thank you!</Success>}
-    </Wrapper>
+    </Container>
   );
 }

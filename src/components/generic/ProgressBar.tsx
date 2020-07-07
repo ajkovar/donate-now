@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import styled from "styled-components";
 import colors from "colors";
 
-const Wrapper = styled.div`
+const Container = styled.div`
   position: relative;
   flex: 1;
   height: 14px;
@@ -27,9 +27,9 @@ type Props = {
 };
 
 const MoneyInput: FunctionComponent<Props> = ({ progress }) => (
-  <Wrapper>
+  <Container>
     <Progress progress={Math.min(progress, 100)} />
-  </Wrapper>
+  </Container>
 );
 
 export default MoneyInput;
