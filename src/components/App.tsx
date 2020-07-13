@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useReducer, useCallback } from "react";
 import styled from "styled-components";
 import MakeDonation from "./MakeDonation";
 import Bubble from "./generic/Bubble";
@@ -23,12 +23,19 @@ const DonationWrapper = styled.section`
   margin: 0 15px;
 `;
 
+const add = (total: number, amount: number) => total + amount;
+
 export default function () {
   const donationGoal = 5000;
-  const [donors, setDonors] = useState(11);
-  const [moneyCollected, setMoneyCollected] = useState(850);
+  const [donors, addDonors] = useReducer(add, 11);
+  const [moneyCollected, addMoneyCollected] = useReducer(add, 850);
   const [showConfetti, setShowConfetti] = useState(false);
   const moneyNeeded = Math.max(donationGoal - moneyCollected, 0);
+  const onDonate = useCallback((amount) => {
+    addDonors(1);
+    addMoneyCollected(amount);
+    setShowConfetti(true);
+  }, []);
   return (
     <Wrapper>
       {showConfetti && (
@@ -49,11 +56,7 @@ export default function () {
           donors={donors}
           moneyCollected={moneyCollected}
           donationGoal={donationGoal}
-          onDonate={(amount) => {
-            setDonors(donors + 1);
-            setMoneyCollected(moneyCollected + amount);
-            setShowConfetti(true);
-          }}
+          onDonate={onDonate}
         />
       </DonationWrapper>
     </Wrapper>

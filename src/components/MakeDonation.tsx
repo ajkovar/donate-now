@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import styled from "styled-components";
 import colors from "colors";
 import MoneyInput from "./generic/MoneyInput";
@@ -60,7 +60,7 @@ const defaultValue = 50;
 const validate = (amount: number) =>
   amount < 5 ? "Donation must be greater than $5" : null;
 
-export default function ({
+export default memo(function ({
   donors,
   onDonate,
   donationGoal,
@@ -103,4 +103,4 @@ export default function ({
       {donationMade && <Success>Thank you!</Success>}
     </Container>
   );
-}
+});
